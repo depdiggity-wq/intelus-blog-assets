@@ -12,6 +12,7 @@ AREAS = {
     "voip": ("BUSINESS PHONES", (52, 211, 153)),
     "camera": ("VIDEO SURVEILLANCE", (251, 146, 60)),
     "access": ("ACCESS CONTROL", (167, 139, 250)),
+    "alert": ("IT ALERT", (248, 113, 113)),
 }
 
 def font(w, s):
@@ -39,6 +40,11 @@ def icon(d, area, cx, cy, c, s=1.0):
         d.ellipse([cx + 60*s, cy - 75*s, cx + 140*s, cy - 5*s], outline=c, width=lw)
         d.line([(cx - 40*s, cy + 10*s), (cx - 40*s, cy + 110*s), (cx - 130*s, cy + 110*s)], fill=c, width=lw)
         d.ellipse([cx - 100*s, cy - 55*s, cx - 70*s, cy - 25*s], fill=c)
+    elif area == "alert":  # warning triangle
+        tri = [(cx, cy - 135*s), (cx + 140*s, cy + 110*s), (cx - 140*s, cy + 110*s)]
+        d.line(tri + [tri[0]], fill=c, width=lw, joint="curve")
+        d.line([(cx, cy - 50*s), (cx, cy + 35*s)], fill=c, width=int(18*s))
+        d.ellipse([cx - 12*s, cy + 58*s, cx + 12*s, cy + 82*s], fill=c)
     else:  # access: keycard reader + card
         d.rounded_rectangle([cx - 80*s, cy - 150*s, cx + 80*s, cy + 150*s], 26*s, outline=c, width=lw)
         d.ellipse([cx - 22*s, cy - 110*s, cx + 22*s, cy - 66*s], fill=c)
